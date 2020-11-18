@@ -2,8 +2,6 @@ package com.example.demo.controller;
 
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,8 +15,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.example.demo.model.Student;
 import com.example.demo.service.StudentService;
 
-
-
 @Controller
 public class StudentController {
 	
@@ -26,11 +22,10 @@ public class StudentController {
 	private StudentService studentService;
 
 	@RequestMapping(value="/students", method = RequestMethod.GET)
-	// SERVLET -> handling mapping
-	public ModelAndView students(){		
+	public ModelAndView students(){
 		List<Student> students = studentService.findAll();		
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject("students", students);// set the attributes to view files
+		modelAndView.addObject("students", students);
 		modelAndView.setViewName("student/list");
 		return modelAndView;
 	}
@@ -42,9 +37,7 @@ public class StudentController {
 	}
 	
 	@RequestMapping(value = "/student", method = RequestMethod.POST)
-	public String edit(@Valid @ModelAttribute("student") Student student, 
-			BindingResult result, Model model)  {
-
+	public String edit(@ModelAttribute("student") Student student, BindingResult result, Model model)  {
 		if (result.hasErrors()) {
 			model.addAttribute("errors", result.getAllErrors());
 			return "student/edit";
