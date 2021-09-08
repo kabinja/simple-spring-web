@@ -35,7 +35,7 @@ public class StudentStepsDefinitions extends SpringIntegrationTest {
 	}
 
 	@Then("^User input and submit student form$")
-	public void enter_and_submi_form() throws Throwable {
+	public void enter_and_submit_form() {
 		driver.findElement(By.id("firstname")).sendKeys("John");
 		driver.findElement(By.id("lastname")).sendKeys("Doe");
 		driver.findElement(By.id("email")).sendKeys("john.doe@gmail.com");
@@ -43,7 +43,7 @@ public class StudentStepsDefinitions extends SpringIntegrationTest {
 	}
 
 	@Then("^User will see student list page$")
-	public void verify_redurect_to_student__listpage() {
+	public void verify_redirect_to_student_list_page() {
 		String actualString = driver.findElement(By.className("student_list_heading")).getText();
 		assertTrue(actualString.contains("Student List"));
 
